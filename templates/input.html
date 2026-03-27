@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Plan Your Trip — SmartTrip</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: #03060f;
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── NAV ── */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 5vw;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      background: rgba(3,6,15,0.8);
+      backdrop-filter: blur(20px);
+      position: sticky; top: 0; z-index: 10;
+    }
+    .logo {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.2rem; font-weight: 800;
+      text-decoration: none; color: white;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .logo-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: linear-gradient(135deg, #2563ff, #8b5cf6);
+      box-shadow: 0 0 10px rgba(37,99,255,0.8);
+    }
+    .back-btn {
+      font-size: 0.85rem; color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      display: flex; align-items: center; gap: 6px;
+      transition: color 0.2s;
+    }
+    .back-btn:hover { color: white; }
+
+    /* ── MAIN ── */
+    main {
+      flex: 1;
+      display: flex; align-items: center; justify-content: center;
+      padding: 4rem 1.5rem;
+    }
+
+    .form-wrapper {
+      width: 100%; max-width: 560px;
+    }
+
+    .form-header { text-align: center; margin-bottom: 2.5rem; }
+    .form-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: #93c5fd;
+      background: rgba(37,99,255,0.08);
+      border: 1px solid rgba(37,99,255,0.25);
+      padding: 5px 14px; border-radius: 50px;
+      margin-bottom: 1rem;
+    }
+    .form-header h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.2rem; font-weight: 800;
+      letter-spacing: -1px; line-height: 1.15;
+      margin-bottom: 0.6rem;
+    }
+    .form-header h1 span {
+      background: linear-gradient(90deg, #60a5fa, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .form-header p {
+      font-size: 0.95rem; color: rgba(255,255,255,0.5);
+      font-weight: 300; line-height: 1.6;
+    }
+
+    /* ── FORM CARD ── */
+    .form-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 24px;
+      padding: 2.5rem;
+      backdrop-filter: blur(20px);
+      position: relative; overflow: hidden;
+    }
+    .form-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+    }
+
+    /* ── FORM FIELDS ── */
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+    @media(max-width: 480px) { .field-row { grid-template-columns: 1fr; } }
+
+    .field {
+      display: flex; flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1.2rem;
+    }
+
+    label {
+      font-size: 0.8rem; font-weight: 600;
+      letter-spacing: 0.5px;
+      color: rgba(255,255,255,0.6);
+      display: flex; align-items: center; gap: 6px;
+    }
+    label .licon { font-size: 0.95rem; }
+
+    input, select {
+      width: 100%;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 0.8rem 1rem;
+      color: white;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.95rem; font-weight: 400;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+      appearance: none;
+    }
+    input::placeholder { color: rgba(255,255,255,0.2); }
+    input:focus, select:focus {
+      border-color: rgba(37,99,255,0.6);
+      background: rgba(37,99,255,0.05);
+      box-shadow: 0 0 0 3px rgba(37,99,255,0.1);
+    }
+
+    /* Date input color fix */
+    input[type="date"]::-webkit-calendar-picker-indicator {
+      filter: invert(0.5);
+      cursor: pointer;
+    }
+
+    /* Select arrow */
+    .select-wrap { position: relative; }
+    .select-wrap::after {
+      content: '▾';
+      position: absolute; right: 1rem; top: 50%;
+      transform: translateY(-50%);
+      color: rgba(255,255,255,0.3);
+      font-size: 0.75rem;
+      pointer-events: none;
+    }
+    select option { background: #0f172a; color: white; }
+
+    /* Category cards */
+    .category-group {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      margin-bottom: 1.2rem;
+    }
+    @media(max-width:480px){ .category-group { grid-template-columns: 1fr; } }
+
+    .cat-label {
+      cursor: pointer;
+    }
+    .cat-label input[type="radio"] { display: none; }
+    .cat-card {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 6px;
+      padding: 1rem 0.5rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.03);
+      transition: border-color 0.2s, background 0.2s, transform 0.2s;
+      text-align: center;
+    }
+    .cat-card .cat-emoji { font-size: 1.5rem; }
+    .cat-card .cat-name {
+      font-size: 0.78rem; font-weight: 600;
+      color: rgba(255,255,255,0.6);
+    }
+    .cat-label input:checked + .cat-card {
+      border-color: rgba(37,99,255,0.6);
+      background: rgba(37,99,255,0.1);
+    }
+    .cat-label input:checked + .cat-card .cat-name { color: #93c5fd; }
+    .cat-card:hover { border-color: rgba(255,255,255,0.2); transform: translateY(-2px); }
+
+    /* ── DIVIDER ── */
+    .form-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.07), transparent);
+      margin: 1.5rem 0;
+    }
+
+    /* ── SUBMIT ── */
+    .submit-btn {
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(135deg, #2563ff, #8b5cf6);
+      border: none; border-radius: 14px;
+      color: white;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1rem; font-weight: 600;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      box-shadow: 0 0 30px rgba(37,99,255,0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
+      margin-top: 0.5rem;
+    }
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 50px rgba(37,99,255,0.55);
+    }
+    .submit-btn:active { transform: translateY(0); }
+
+    /* ── FOOTER NOTE ── */
+    .form-note {
+      text-align: center; margin-top: 1.5rem;
+      font-size: 0.78rem; color: rgba(255,255,255,0.25);
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">
+    <span class="logo-dot"></span>SmartTrip
+  </a>
+  <a href="/" class="back-btn">← Back to Home</a>
+</nav>
+
+<main>
+  <div class="form-wrapper">
+
+    <div class="form-header">
+      <div class="form-badge">✦ Agentic AI</div>
+      <h1>Plan Your <span>Perfect Trip</span></h1>
+      <p>Enter your travel details below and let our AI agents handle the rest.</p>
+    </div>
+
+    <div class="form-card">
+      <form action="/recommend" method="POST">
+
+        <div class="field-row">
+          <div class="field">
+            <label><span class="licon">👥</span> Number of Members</label>
+            <input type="number" name="members" placeholder="e.g. 4" min="1" max="50" required/>
+          </div>
+          <div class="field">
+            <label><span class="licon">💰</span> Budget (₹)</label>
+            <input type="number" name="budget" placeholder="e.g. 15000" min="500" required/>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label><span class="licon">📅</span> Travel Date</label>
+            <input type="date" name="travel_date" required/>
+          </div>
+          <div class="field">
+            <label><span class="licon">🌙</span> Number of Days</label>
+            <input type="number" name="days" placeholder="e.g. 3" min="1" max="30" required/>
+          </div>
+        </div>
+
+        <div class="form-divider"></div>
+
+        <div class="field-row">
+  <div class="field">
+    <label><span class="licon">👥</span> Travel Group</label>
+    <div class="select-wrap">
+      <select name="travel_group" required>
+        <option value="" disabled selected>Select group type</option>
+        <option value="Solo">🧍 Solo</option>
+        <option value="Couple">💑 Couple</option>
+        <option value="Family">👨‍👩‍👧‍👦 Family</option>
+        <option value="Friends">🎊 Friends</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="field">
+    <label><span class="licon">🗺️</span> Trip Type</label>
+    <div class="select-wrap">
+      <select name="trip_type" required>
+        <option value="" disabled selected>Select trip type</option>
+        <option value="Fun">🎉 Fun</option>
+        <option value="Adventure">🧗 Adventure</option>
+        <option value="Devotional">🕌 Devotional</option>
+        <option value="Nature">🌿 Nature</option>
+        <option value="Beach">🏖️ Beach</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+        <div class="form-divider"></div>
+
+        <button type="submit" class="submit-btn">
+          ✈ Find My Destinations
+        </button>
+
+      </form>
+    </div>
+
+    <p class="form-note">No account needed · AI-powered · Free to use</p>
+
+  </div>
+</main>
+
+</body>
+</html>
