@@ -39,8 +39,8 @@ pip install -r requirements.txt
 1. **Clone the Repository** 📥
 
    ```bash
-   git clone https://github.com/your-username/travel-tourism-agentic-ai.git
-   cd travel-tourism-agentic-ai
+   git clone https://github.com/pirai-soodan/DESIGN-THINKING-PROJECT.git
+   cd DESIGN-THINKING-PROJECT
    ```
 
 2. **Install Dependencies** ⚙️
