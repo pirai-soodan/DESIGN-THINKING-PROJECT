@@ -1,4 +1,3 @@
-Here’s a **professional README.md** in the same style as your friend’s, customized for your project **“Travel and Tourism Integrated with Agentic AI”** 👇
 
 ---
 
@@ -105,17 +104,11 @@ In this project, it:
 * 🔔 Notification system for travel updates
 
 ---
-
-## 📸 Screenshots (Optional)
-
-*Add screenshots of your UI here*
-
----
-
 ## 👨‍💻 Contributors
 
-* Pirai 
-* 
+* Pirai Soodan
+* Pooja
+* Phaveen 
 
 ---
 
