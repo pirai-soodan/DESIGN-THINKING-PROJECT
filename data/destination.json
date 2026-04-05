@@ -1,0 +1,162 @@
+[
+  {
+    "name": "Goa",
+    "trip_types": ["fun", "beach"],
+    "groups": ["friends", "couple"],
+    "average_cost": 25000,
+    "best_season": ["November", "December", "January"],
+    "description": "Famous for beaches, nightlife, and water sports."
+  },
+  {
+    "name": "Manali",
+    "trip_types": ["adventure", "nature"],
+    "groups": ["friends", "couple"],
+    "average_cost": 22000,
+    "best_season": ["March", "April", "May"],
+    "description": "Popular for snow, trekking, and scenic mountain views."
+  },
+  {
+    "name": "Rishikesh",
+    "trip_types": ["adventure", "devotional"],
+    "groups": ["friends", "solo"],
+    "average_cost": 15000,
+    "best_season": ["September", "October", "November"],
+    "description": "Known for river rafting and spiritual experiences."
+  },
+  {
+    "name": "Kanyakumari",
+    "trip_types": ["nature", "devotional"],
+    "groups": ["family"],
+    "average_cost": 12000,
+    "best_season": ["October", "November", "December"],
+    "description": "Southern tip of India with beautiful sunrise and temples."
+  },
+  {
+    "name": "Pondicherry",
+    "trip_types": ["beach", "fun"],
+    "groups": ["couple", "friends"],
+    "average_cost": 18000,
+    "best_season": ["October", "February"],
+    "description": "French-style coastal town with beaches and cafes."
+  },
+  {
+    "name": "Leh-Ladakh",
+    "trip_types": ["adventure", "nature"],
+    "groups": ["friends"],
+    "average_cost": 35000,
+    "best_season": ["June", "July", "August"],
+    "description": "High-altitude desert with stunning landscapes and bike trips."
+  },
+  {
+    "name": "Tirupati",
+    "trip_types": ["devotional"],
+    "groups": ["family"],
+    "average_cost": 10000,
+    "best_season": ["All year"],
+    "description": "One of the most visited pilgrimage destinations in India."
+  },
+  {
+    "name": "Andaman Islands",
+    "trip_types": ["beach", "adventure"],
+    "groups": ["couple", "friends"],
+    "average_cost": 40000,
+    "best_season": ["November", "April"],
+    "description": "Crystal clear waters, scuba diving, and serene beaches."
+  },
+  {
+    "name": "Mysore",
+    "trip_types": ["fun", "devotional"],
+    "groups": ["family"],
+    "average_cost": 15000,
+    "best_season": ["October", "February"],
+    "description": "Known for palaces, culture, and Dasara festival."
+  },
+  {
+    "name": "Coorg",
+    "trip_types": ["nature", "fun"],
+    "groups": ["couple", "family"],
+    "average_cost": 20000,
+    "best_season": ["October", "March"],
+    "description": "Coffee plantations, waterfalls, and peaceful hills."
+  },
+  {
+    "name": "Jaipur",
+    "trip_types": ["fun", "devotional"],
+    "groups": ["family", "friends"],
+    "average_cost": 18000,
+    "best_season": ["November", "February"],
+    "description": "Historic forts, palaces, and vibrant culture."
+  },
+  {
+    "name": "Varanasi",
+    "trip_types": ["devotional"],
+    "groups": ["family", "solo"],
+    "average_cost": 12000,
+    "best_season": ["October", "March"],
+    "description": "Spiritual capital of India with ghats and temples."
+  },
+  {
+    "name": "Gokarna",
+    "trip_types": ["beach", "devotional"],
+    "groups": ["friends", "couple"],
+    "average_cost": 17000,
+    "best_season": ["October", "March"],
+    "description": "Peaceful beaches with religious significance."
+  },
+  {
+    "name": "Darjeeling",
+    "trip_types": ["nature"],
+    "groups": ["family", "couple"],
+    "average_cost": 25000,
+    "best_season": ["March", "May", "October"],
+    "description": "Tea gardens and Himalayan views."
+  },
+  {
+    "name": "Hampi",
+    "trip_types": ["fun", "adventure"],
+    "groups": ["friends"],
+    "average_cost": 14000,
+    "best_season": ["November", "February"],
+    "description": "Ancient ruins and bouldering adventures."
+  },
+  {
+    "name": "Kedarnath",
+    "trip_types": ["devotional", "adventure"],
+    "groups": ["family"],
+    "average_cost": 20000,
+    "best_season": ["May", "June", "September"],
+    "description": "Sacred temple with a trekking experience."
+  },
+  {
+    "name": "Alleppey",
+    "trip_types": ["nature", "fun"],
+    "groups": ["family", "couple"],
+    "average_cost": 22000,
+    "best_season": ["November", "February"],
+    "description": "Backwaters and houseboat stays in Kerala."
+  },
+  {
+    "name": "Mahabalipuram",
+    "trip_types": ["beach", "fun"],
+    "groups": ["family", "friends"],
+    "average_cost": 10000,
+    "best_season": ["November", "February"],
+    "description": "Historic coastal town with temples and beaches."
+  },
+  {
+    "name": "Shimla",
+    "trip_types": ["nature", "fun"],
+    "groups": ["family", "couple"],
+    "average_cost": 23000,
+    "best_season": ["March", "June", "December"],
+    "description": "Colonial hill station with cool climate."
+  },
+  {
+    "name": "Rameswaram",
+    "trip_types": ["devotional", "nature"],
+    "groups": ["family"],
+    "average_cost": 12000,
+    "best_season": ["October", "April"],
+    "description": "Sacred island with temples and scenic coastlines."
+  }
+]

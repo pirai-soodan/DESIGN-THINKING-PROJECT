@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Choose Hotel — SmartTrip</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: #03060f; color: #ffffff; min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.1rem 5vw;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      background: rgba(3,6,15,0.9); backdrop-filter: blur(20px);
+      position: sticky; top: 0; z-index: 10;
+    }
+    .logo {
+      font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 800;
+      text-decoration: none; color: white;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .logo-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: linear-gradient(135deg,#2563ff,#8b5cf6);
+      box-shadow: 0 0 10px rgba(37,99,255,0.8);
+    }
+    .back-link {
+      font-size: 0.85rem; color: rgba(255,255,255,0.5);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .back-link:hover { color: white; }
+
+    /* ── PROGRESS ── */
+    .progress-wrap {
+      padding: 1.8rem 5vw 0; max-width: 680px; margin: 0 auto;
+    }
+    .progress-steps { display: flex; align-items: center; }
+    .p-step {
+      display: flex; align-items: center; gap: 7px;
+      font-size: 0.78rem; font-weight: 500; white-space: nowrap;
+    }
+    .p-dot {
+      width: 26px; height: 26px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.68rem; font-weight: 700; flex-shrink: 0;
+    }
+    .done   { background: linear-gradient(135deg,#22c55e,#16a34a); color:#fff; }
+    .active { background: linear-gradient(135deg,#2563ff,#8b5cf6); color:#fff;
+              box-shadow: 0 0 14px rgba(37,99,255,0.55); }
+    .pending{ background: rgba(255,255,255,0.07);
+              border: 1px solid rgba(255,255,255,0.12);
+              color: rgba(255,255,255,0.3); }
+    .p-label        { color: rgba(255,255,255,0.4); }
+    .p-label.active { color: #ffffff; }
+    .p-line {
+      flex: 1; height: 1px; margin: 0 8px;
+      background: rgba(255,255,255,0.1);
+    }
+    .p-line.done { background: #22c55e; }
+    @media(max-width:560px){ .p-label { display: none; } }
+
+    /* ── PAGE HEADER ── */
+    .page-header { text-align: center; padding: 3rem 5vw 2rem; }
+    .page-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: #fcd34d;
+      background: rgba(251,191,36,0.08);
+      border: 1px solid rgba(251,191,36,0.2);
+      padding: 5px 14px; border-radius: 50px; margin-bottom: 1rem;
+    }
+    .page-header h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.8rem,4vw,2.8rem);
+      font-weight: 800; letter-spacing: -1px; margin-bottom: 0.5rem;
+    }
+    .page-header h1 span {
+      background: linear-gradient(90deg,#fcd34d,#f59e0b);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .page-header p { color: rgba(255,255,255,0.5); font-size: 0.95rem; }
+
+    /* ── SUMMARY BAR ── */
+    .summary-bar {
+      display: flex; justify-content: center; flex-wrap: wrap;
+      gap: 0.75rem; padding: 0 5vw 2.5rem;
+    }
+    .s-pill {
+      display: flex; align-items: center; gap: 7px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 50px; padding: 7px 16px;
+      font-size: 0.83rem; color: rgba(255,255,255,0.6);
+    }
+    .s-pill strong { color: #fff; font-weight: 600; }
+
+    /* ── CARDS ── */
+    .cards-section {
+      max-width: 860px; margin: 0 auto; padding: 0 5vw 6rem;
+    }
+    .hotels-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .h-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 24px; padding: 0;
+      overflow: hidden;
+      display: flex; flex-direction: column;
+      transition: transform 0.35s cubic-bezier(.16,1,.3,1),
+                  border-color 0.3s, box-shadow 0.3s;
+    }
+    .h-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(251,191,36,0.35);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5),
+                  0 0 30px rgba(251,191,36,0.08);
+    }
+
+    /* Card colour banner by type */
+    .card-banner {
+      height: 8px; width: 100%;
+    }
+    .banner-luxury   { background: linear-gradient(90deg,#f59e0b,#d97706); }
+    .banner-standard { background: linear-gradient(90deg,#2563ff,#7c3aed); }
+    .banner-budget   { background: linear-gradient(90deg,#22c55e,#16a34a); }
+
+    .card-body { padding: 1.8rem; flex: 1; display: flex; flex-direction: column; }
+
+    /* Type badge */
+    .type-badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase;
+      padding: 4px 10px; border-radius: 50px;
+      margin-bottom: 0.9rem; width: fit-content;
+    }
+    .type-luxury   { color:#fcd34d; background:rgba(251,191,36,0.1);
+                     border:1px solid rgba(251,191,36,0.25); }
+    .type-standard { color:#93c5fd; background:rgba(37,99,255,0.1);
+                     border:1px solid rgba(37,99,255,0.25); }
+    .type-budget   { color:#86efac; background:rgba(34,197,94,0.1);
+                     border:1px solid rgba(34,197,94,0.25); }
+
+    .hotel-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.3rem; font-weight: 800;
+      letter-spacing: -0.4px; margin-bottom: 0.5rem;
+    }
+
+    /* Stars */
+    .stars { display: flex; align-items: center; gap: 6px; margin-bottom: 1.2rem; }
+    .star-icons { color: #f59e0b; font-size: 0.9rem; letter-spacing: 1px; }
+    .rating-num { font-size: 0.82rem; color: rgba(255,255,255,0.5); }
+
+    /* Price block */
+    .price-block {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 14px; padding: 1rem 1.2rem;
+      margin-bottom: 1.2rem;
+    }
+    .price-row {
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .price-row + .price-row {
+      margin-top: 0.55rem; padding-top: 0.55rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .price-label { font-size: 0.78rem; color: rgba(255,255,255,0.4); }
+    .price-value {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.3rem; font-weight: 800; color: #fcd34d;
+    }
+    .price-nights { font-size: 0.9rem; color: rgba(255,255,255,0.7); }
+    .price-nights strong { color: white; }
+
+    /* Amenities */
+    .amenities {
+      display: flex; gap: 0.45rem; flex-wrap: wrap; margin-bottom: 1.4rem;
+    }
+    .amenity {
+      font-size: 0.72rem; color: rgba(255,255,255,0.5);
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 4px 10px; border-radius: 50px;
+    }
+
+    /* Select button */
+    .select-btn {
+      width: 100%; padding: 0.9rem; border: none; border-radius: 14px;
+      color: white; font-family: 'Outfit', sans-serif;
+      font-size: 0.95rem; font-weight: 600;
+      cursor: pointer; margin-top: auto;
+      background: linear-gradient(135deg,#f59e0b,#d97706);
+      box-shadow: 0 0 20px rgba(245,158,11,0.3);
+      transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
+    }
+    .select-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 40px rgba(245,158,11,0.5);
+      filter: brightness(1.1);
+    }
+
+    /* No hotels fallback */
+    .no-hotels {
+      text-align: center; padding: 4rem 2rem;
+      color: rgba(255,255,255,0.4);
+    }
+    .no-hotels h2 {
+      font-family: 'Syne', sans-serif; font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .no-hotels a { color: #60a5fa; text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="logo"><span class="logo-dot"></span>SmartTrip</a>
+  <a href="/input" class="back-link">← Change Details</a>
+</nav>
+
+<!-- PROGRESS -->
+<div class="progress-wrap">
+  <div class="progress-steps">
+    <div class="p-step">
+      <div class="p-dot done">✓</div>
+      <span class="p-label">Details</span>
+    </div>
+    <div class="p-line done"></div>
+    <div class="p-step">
+      <div class="p-dot done">✓</div>
+      <span class="p-label">Destination</span>
+    </div>
+    <div class="p-line done"></div>
+    <div class="p-step">
+      <div class="p-dot done">✓</div>
+      <span class="p-label">Transport</span>
+    </div>
+    <div class="p-line done"></div>
+    <div class="p-step">
+      <div class="p-dot active">4</div>
+      <span class="p-label active">Hotels</span>
+    </div>
+    <div class="p-line"></div>
+    <div class="p-step">
+      <div class="p-dot pending">5</div>
+      <span class="p-label">Itinerary</span>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<div class="page-header">
+  <div class="page-badge">🏨 Accommodation Agent</div>
+  <h1>Hotels in <span>{{ destination }}</span></h1>
+  <p>Choose your stay — prices shown per night.</p>
+</div>
+
+<!-- SUMMARY BAR -->
+<div class="summary-bar">
+  <div class="s-pill">🗺️ <strong>{{ destination }}</strong></div>
+  <div class="s-pill">🌙 <strong>{{ trip.days }} night(s)</strong></div>
+  <div class="s-pill">👥 <strong>{{ trip.members }} traveler(s)</strong></div>
+  {% if transport.mode %}
+  <div class="s-pill">
+    {% if transport.mode == 'Flight' %}✈️
+    {% elif transport.mode == 'Train' %}🚆
+    {% else %}🚌{% endif %}
+    <strong>{{ transport.mode }}</strong> booked
+  </div>
+  {% endif %}
+</div>
+
+<!-- HOTEL CARDS -->
+<div class="cards-section">
+  {% if hotels %}
+  <div class="hotels-grid">
+    {% for hotel in hotels %}
+    <div class="h-card">
+
+      <!-- Colour top bar by type -->
+      <div class="card-banner banner-{{ hotel.type | lower }}"></div>
+
+      <div class="card-body">
+
+        <!-- Type badge -->
+        <span class="type-badge type-{{ hotel.type | lower }}">
+          {% if hotel.type == 'Luxury' %}⭐ Luxury
+          {% elif hotel.type == 'Standard' %}🏷 Standard
+          {% else %}💚 Budget
+          {% endif %}
+        </span>
+
+        <div class="hotel-name">{{ hotel.name }}</div>
+
+        <!-- Stars -->
+        <div class="stars">
+          <span class="star-icons">
+            {% set full = hotel.rating | int %}
+            {% for i in range(full) %}★{% endfor %}
+            {% if hotel.rating - full >= 0.5 %}½{% endif %}
+          </span>
+          <span class="rating-num">{{ hotel.rating }} / 5</span>
+        </div>
+
+        <!-- Price -->
+        <div class="price-block">
+          <div class="price-row">
+            <span class="price-label">Per night</span>
+            <span class="price-value">₹{{ hotel.price }}</span>
+          </div>
+          <div class="price-row">
+            <span class="price-label">Total ({{ trip.days }} nights)</span>
+            <span class="price-nights">
+              <strong>₹{{ hotel.price * trip.days | int }}</strong>
+            </span>
+          </div>
+        </div>
+
+        <!-- Amenities -->
+        {% if hotel.amenities %}
+        <div class="amenities">
+          {% for a in hotel.amenities %}
+          <span class="amenity">✓ {{ a }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- Select button -->
+        <form action="/select-hotel" method="POST">
+          <input type="hidden" name="hotel_name"   value="{{ hotel.name }}"/>
+          <input type="hidden" name="hotel_price"  value="{{ hotel.price }}"/>
+          <input type="hidden" name="hotel_type"   value="{{ hotel.type }}"/>
+          <input type="hidden" name="hotel_rating" value="{{ hotel.rating }}"/>
+          <button type="submit" class="select-btn">
+            Book {{ hotel.name.split()[0] }} →
+          </button>
+        </form>
+
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  {% else %}
+  <div class="no-hotels">
+    <h2>No hotels found for {{ destination }}</h2>
+    <p>We don't have hotel data for this destination yet.</p>
+    <a href="/input">← Start Over</a>
+  </div>
+  {% endif %}
+</div>
+
+</body>
+</html>

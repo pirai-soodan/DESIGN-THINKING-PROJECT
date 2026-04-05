@@ -1,0 +1,155 @@
+{
+  "Goa": [
+    { "name": "Baga Beach", "description": "Famous beach known for water sports, shacks, and vibrant nightlife." },
+    { "name": "Fort Aguada", "description": "17th-century Portuguese fort with a lighthouse overlooking the Arabian Sea." },
+    { "name": "Calangute Beach", "description": "The largest beach in Goa, popular for swimming and sunbathing." },
+    { "name": "Dudhsagar Falls", "description": "Stunning four-tiered waterfall deep inside the Goa jungle." },
+    { "name": "Old Goa Churches", "description": "UNESCO Heritage churches including Basilica of Bom Jesus." },
+    { "name": "Anjuna Flea Market", "description": "Colourful weekly market selling crafts, clothes, and local produce." }
+  ],
+  "Manali": [
+    { "name": "Rohtang Pass", "description": "High mountain pass at 3,978m with breathtaking snow views." },
+    { "name": "Solang Valley", "description": "Adventure hub for skiing, paragliding, and zorbing." },
+    { "name": "Hadimba Temple", "description": "Ancient wooden temple surrounded by cedar forests." },
+    { "name": "Old Manali", "description": "Charming village with cafes, hippie culture, and riverside walks." },
+    { "name": "Beas River", "description": "Scenic river ideal for rafting and peaceful walks." },
+    { "name": "Naggar Castle", "description": "Medieval stone castle converted into a heritage hotel with Himalayan views." }
+  ],
+  "Rishikesh": [
+    { "name": "Laxman Jhula", "description": "Iconic suspension bridge over the Ganga with temples and ashrams nearby." },
+    { "name": "Ram Jhula", "description": "Another famous iron bridge and spiritual landmark on the Ganges." },
+    { "name": "River Rafting", "description": "Thrilling white-water rafting on the Ganges through scenic rapids." },
+    { "name": "Triveni Ghat", "description": "Sacred bathing ghat where three rivers meet, famous for evening aarti." },
+    { "name": "Beatles Ashram", "description": "Abandoned ashram visited by The Beatles in 1968, now an art landmark." },
+    { "name": "Neer Garh Waterfall", "description": "Beautiful waterfall reachable by a scenic jungle trek." }
+  ],
+  "Kanyakumari": [
+    { "name": "Vivekananda Rock Memorial", "description": "Iconic monument built on a rocky islet where Swami Vivekananda meditated." },
+    { "name": "Sunrise Point", "description": "Famous spot to witness the spectacular trifurcation of sunrise over three seas." },
+    { "name": "Kumari Amman Temple", "description": "Ancient sea-facing temple dedicated to the goddess Kanyakumari." },
+    { "name": "Thiruvalluvar Statue", "description": "133-foot statue of the Tamil poet-saint standing on a small island." },
+    { "name": "Gandhi Memorial", "description": "Memorial built where Mahatma Gandhi's ashes were kept before immersion." }
+  ],
+  "Pondicherry": [
+    { "name": "French Quarter", "description": "Charming colonial streets with colourful buildings, cafes, and boutiques." },
+    { "name": "Auroville", "description": "Experimental universal township promoting human unity and sustainable living." },
+    { "name": "Promenade Beach", "description": "Peaceful beach boulevard perfect for morning walks and sunsets." },
+    { "name": "Sri Aurobindo Ashram", "description": "Spiritual ashram founded by Sri Aurobindo, open to all visitors." },
+    { "name": "Basilica of Sacred Heart", "description": "Beautiful Gothic-style church with impressive stained glass windows." },
+    { "name": "Paradise Beach", "description": "Secluded beach accessible by boat, ideal for swimming and relaxation." }
+  ],
+  "Leh-Ladakh": [
+    { "name": "Pangong Lake", "description": "Stunning high-altitude lake with shimmering blue waters spanning India and China." },
+    { "name": "Nubra Valley", "description": "Cold desert valley with sand dunes, Bactrian camels, and monasteries." },
+    { "name": "Leh Palace", "description": "Nine-storey palace overlooking Leh city with panoramic mountain views." },
+    { "name": "Thiksey Monastery", "description": "Impressive 12-storey monastery resembling the Potala Palace of Tibet." },
+    { "name": "Magnetic Hill", "description": "Mysterious hill where vehicles appear to roll uphill against gravity." },
+    { "name": "Shanti Stupa", "description": "White-domed Buddhist stupa with spectacular 360-degree views of Ladakh." }
+  ],
+  "Tirupati": [
+    { "name": "Tirumala Venkateswara Temple", "description": "One of the world's most visited temples, dedicated to Lord Venkateswara." },
+    { "name": "Sri Padmavathi Temple", "description": "Sacred temple in Tiruchanur dedicated to Goddess Padmavathi." },
+    { "name": "Kapila Theertham", "description": "Ancient temple at the foothills with a waterfall sacred to Lord Shiva." },
+    { "name": "Chandragiri Fort", "description": "16th-century fort that was once the capital of the Vijayanagara kings." },
+    { "name": "TTD Gardens", "description": "Beautifully maintained gardens managed by the Tirumala Tirupati board." }
+  ],
+  "Andaman Islands": [
+    { "name": "Radhanagar Beach", "description": "Ranked among Asia's best beaches with turquoise waters and white sand." },
+    { "name": "Cellular Jail", "description": "Historic colonial prison turned national memorial, famous for light-and-sound show." },
+    { "name": "Elephant Beach", "description": "Popular snorkelling spot with vibrant coral reefs and clear waters." },
+    { "name": "Ross Island", "description": "Former British administrative headquarters now in picturesque ruins." },
+    { "name": "Scuba Diving at Neil Island", "description": "World-class diving with diverse marine life and coral formations." },
+    { "name": "Barren Island Volcano", "description": "India's only active volcano, visible by boat cruise at night." }
+  ],
+  "Mysore": [
+    { "name": "Mysore Palace", "description": "Magnificent royal palace with stunning Indo-Saracenic architecture and light show." },
+    { "name": "Chamundeshwari Temple", "description": "Hilltop temple dedicated to Goddess Chamundeshwari with city views." },
+    { "name": "Brindavan Gardens", "description": "Famous terraced garden with musical fountains below the KRS Dam." },
+    { "name": "Mysore Zoo", "description": "One of India's oldest and best-maintained zoological parks." },
+    { "name": "St. Philomena's Cathedral", "description": "Gothic-style church with stunning stained glass windows and towering spires." }
+  ],
+  "Coorg": [
+    { "name": "Abbey Falls", "description": "Stunning waterfall surrounded by coffee plantations and spice estates." },
+    { "name": "Raja's Seat", "description": "Scenic viewpoint where the Kodagu kings watched sunsets over the hills." },
+    { "name": "Namdroling Monastery", "description": "Tibetan Buddhist monastery known as the Golden Temple with intricate murals." },
+    { "name": "Talakaveri", "description": "Origin of the sacred Cauvery river, surrounded by misty forested hills." },
+    { "name": "Dubare Elephant Camp", "description": "Riverside camp where you can interact with and bathe trained elephants." },
+    { "name": "Iruppu Falls", "description": "Scenic waterfall near the Kerala border, sacred to pilgrims and trekkers." }
+  ],
+  "Jaipur": [
+    { "name": "Amber Fort", "description": "Majestic hilltop fort with stunning mirror work, courtyards, and elephant rides." },
+    { "name": "Hawa Mahal", "description": "Iconic five-storey palace of winds with 953 small windows for royal ladies." },
+    { "name": "City Palace", "description": "Royal palace complex housing museums with textiles, weapons, and paintings." },
+    { "name": "Jantar Mantar", "description": "UNESCO-listed 18th-century astronomical observatory with giant instruments." },
+    { "name": "Nahargarh Fort", "description": "Hilltop fort offering panoramic views of Jaipur city and the Aravalli hills." },
+    { "name": "Johri Bazaar", "description": "Vibrant market famous for jewellery, textiles, and traditional Rajasthani crafts." }
+  ],
+  "Varanasi": [
+    { "name": "Dashashwamedh Ghat", "description": "Main ghat of Varanasi, famous for the spectacular Ganga Aarti each evening." },
+    { "name": "Kashi Vishwanath Temple", "description": "One of the 12 Jyotirlingas, dedicated to Lord Shiva, in the old city." },
+    { "name": "Boat Ride on Ganga", "description": "Sunrise boat ride past ghats and cremation sites — a deeply moving experience." },
+    { "name": "Sarnath", "description": "Deer Park where Buddha gave his first sermon, with a museum and stupa." },
+    { "name": "Manikarnika Ghat", "description": "Sacred cremation ghat burning continuously for thousands of years." },
+    { "name": "Tulsi Manas Temple", "description": "White marble temple where the Ramcharitmanas was written by Tulsidas." }
+  ],
+  "Gokarna": [
+    { "name": "Om Beach", "description": "Naturally Om-shaped beach with calm waters and scenic rocky headlands." },
+    { "name": "Mahabaleshwar Temple", "description": "Ancient Shiva temple with a sacred Atmalinga drawing devotees year-round." },
+    { "name": "Kudle Beach", "description": "Quiet crescent beach with budget cafes and stunning sunsets." },
+    { "name": "Half Moon Beach", "description": "Secluded beach accessible only by foot or boat, perfect for camping." },
+    { "name": "Paradise Beach", "description": "The most remote and pristine beach in Gokarna, ideal for backpackers." }
+  ],
+  "Darjeeling": [
+    { "name": "Tiger Hill", "description": "Famous sunrise viewpoint where Kanchenjunga and Everest are visible on clear days." },
+    { "name": "Darjeeling Himalayan Railway", "description": "UNESCO-listed toy train winding through tea gardens and forested hills." },
+    { "name": "Tea Gardens", "description": "Visit Happy Valley or Makaibari estates to see and taste Darjeeling tea." },
+    { "name": "Batasia Loop", "description": "Scenic spiral railway loop with a war memorial and mountain panorama." },
+    { "name": "Japanese Peace Pagoda", "description": "White Buddhist stupa near Darjeeling with serene gardens and Himalayan views." },
+    { "name": "Ghoom Monastery", "description": "Oldest monastery in Darjeeling, home to a large statue of Maitreya Buddha." }
+  ],
+  "Hampi": [
+    { "name": "Virupaksha Temple", "description": "Living temple dedicated to Lord Shiva, continuously worshipped for centuries." },
+    { "name": "Vittala Temple", "description": "Famous for its stone chariot and musical pillars that produce musical notes." },
+    { "name": "Hampi Bazaar", "description": "Ancient market street lined with ruins running up to the Virupaksha Temple." },
+    { "name": "Elephant Stables", "description": "Magnificent row of chambers that once housed the royal elephants." },
+    { "name": "Matanga Hill", "description": "Best sunrise viewpoint in Hampi with 360-degree views of the ruins." },
+    { "name": "Tungabhadra River", "description": "Sacred river with coracle rides offering views of boulders and ancient ruins." }
+  ],
+  "Kedarnath": [
+    { "name": "Kedarnath Temple", "description": "One of the 12 Jyotirlingas, nestled in the Himalayas at 3,583m altitude." },
+    { "name": "Bhairavnath Temple", "description": "Temple dedicated to the guardian deity of Kedarnath, believed to protect the valley." },
+    { "name": "Gandhi Sarovar", "description": "Scenic glacial lake near Kedarnath, also known as Chorabari Lake." },
+    { "name": "Shankaracharya Samadhi", "description": "Memorial to Adi Shankaracharya who is said to have attained samadhi here." },
+    { "name": "Vasuki Tal", "description": "High-altitude glacial lake offering views of the Chaukhamba peaks." }
+  ],
+  "Alleppey": [
+    { "name": "Alleppey Backwaters", "description": "Network of canals, rivers, and lakes best explored on a houseboat." },
+    { "name": "Alleppey Beach", "description": "Long sandy beach with a historic pier stretching into the Arabian Sea." },
+    { "name": "Punnamada Lake", "description": "Scenic lake hosting the famous Nehru Trophy Boat Race every August." },
+    { "name": "Krishnapuram Palace", "description": "18th-century palace showcasing Kerala murals and traditional architecture." },
+    { "name": "Ambalappuzha Sri Krishna Temple", "description": "Ancient temple famous for its palpayasam — a sweet rice offering." },
+    { "name": "Marari Beach", "description": "Pristine, less-crowded beach with coconut groves and fishing villages." }
+  ],
+  "Mahabalipuram": [
+    { "name": "Shore Temple", "description": "UNESCO World Heritage temple built in the 8th century overlooking the sea." },
+    { "name": "Five Rathas", "description": "Monolithic rock-cut chariots carved in the shape of temple towers." },
+    { "name": "Arjuna's Penance", "description": "World's largest open-air rock relief depicting scenes from the Mahabharata." },
+    { "name": "Mahabalipuram Beach", "description": "Sandy beach beside the Shore Temple, perfect for an evening walk." },
+    { "name": "Krishna's Butter Ball", "description": "Massive natural boulder perfectly balanced on a hillside — a geological wonder." }
+  ],
+  "Shimla": [
+    { "name": "The Mall Road", "description": "Main pedestrian promenade lined with shops, restaurants, and colonial buildings." },
+    { "name": "Christ Church", "description": "Second oldest church in North India with beautiful stained glass windows." },
+    { "name": "Jakhu Temple", "description": "Hilltop Hanuman temple at 2,455m, offering the best views of Shimla." },
+    { "name": "Kufri", "description": "Popular hill resort near Shimla, known for skiing and Himalayan views." },
+    { "name": "Viceregal Lodge", "description": "Stunning Tudor-style building that was once the summer retreat of the British Viceroy." },
+    { "name": "Toy Train to Shimla", "description": "UNESCO-listed Kalka-Shimla railway with breathtaking mountain scenery." }
+  ],
+  "Rameswaram": [
+    { "name": "Ramanathaswamy Temple", "description": "One of the 12 Jyotirlingas with the longest temple corridor in the world." },
+    { "name": "Pamban Bridge", "description": "India's first sea bridge, connecting Rameswaram island to the mainland." },
+    { "name": "Dhanushkodi", "description": "Ghost town at the island's tip where two oceans meet — hauntingly beautiful." },
+    { "name": "Agnitheertham", "description": "Sacred sea bathing ghat on the east coast, believed to cleanse sins." },
+    { "name": "Abdul Kalam Memorial", "description": "Memorial dedicated to former President Dr. APJ Abdul Kalam, a Rameswaram native." }
+  ]
+}
