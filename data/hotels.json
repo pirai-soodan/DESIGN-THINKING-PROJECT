@@ -1,0 +1,322 @@
+{
+  "Goa": [
+    {
+      "name": "Taj Holiday Village Resort",
+      "price": 5000,
+      "rating": 4.5,
+      "type": "Luxury",
+      "amenities": ["Pool", "Spa", "Beach Access", "WiFi"]
+    },
+    {
+      "name": "Resort Rio Goa",
+      "price": 3500,
+      "rating": 4.2,
+      "type": "Standard",
+      "amenities": ["Pool", "Restaurant", "WiFi", "Parking"]
+    }
+  ],
+  "Manali": [
+    {
+      "name": "Snow Valley Resorts",
+      "price": 4000,
+      "rating": 4.3,
+      "type": "Luxury",
+      "amenities": ["Mountain View", "Spa", "Bonfire", "WiFi"]
+    },
+    {
+      "name": "Hotel Mountain Top",
+      "price": 2500,
+      "rating": 4.0,
+      "type": "Budget",
+      "amenities": ["Room Service", "WiFi", "Parking"]
+    }
+  ],
+  "Rishikesh": [
+    {
+      "name": "Rishikesh Retreat Resort",
+      "price": 3500,
+      "rating": 4.4,
+      "type": "Luxury",
+      "amenities": ["Yoga Center", "River View", "Spa", "WiFi"]
+    },
+    {
+      "name": "Hotel Ganga Kinare",
+      "price": 2000,
+      "rating": 4.1,
+      "type": "Standard",
+      "amenities": ["River View", "Restaurant", "WiFi"]
+    }
+  ],
+  "Kanyakumari": [
+    {
+      "name": "Hotel Sparsa Kanyakumari",
+      "price": 3000,
+      "rating": 4.3,
+      "type": "Luxury",
+      "amenities": ["Sea View", "Pool", "Restaurant", "WiFi"]
+    },
+    {
+      "name": "Hotel Tamil Nadu",
+      "price": 1500,
+      "rating": 3.8,
+      "type": "Budget",
+      "amenities": ["Sea View", "Restaurant", "Parking"]
+    }
+  ],
+  "Pondicherry": [
+    {
+      "name": "Palais de Mahe",
+      "price": 6000,
+      "rating": 4.6,
+      "type": "Luxury",
+      "amenities": ["Pool", "Spa", "French Quarter", "WiFi"]
+    },
+    {
+      "name": "Hotel de l'Orient",
+      "price": 3000,
+      "rating": 4.2,
+      "type": "Standard",
+      "amenities": ["Heritage Building", "Restaurant", "WiFi"]
+    }
+  ],
+  "Leh-Ladakh": [
+    {
+      "name": "The Grand Dragon Ladakh",
+      "price": 7000,
+      "rating": 4.5,
+      "type": "Luxury",
+      "amenities": ["Mountain View", "Spa", "Restaurant", "WiFi"]
+    },
+    {
+      "name": "Hotel Ladakh Palace",
+      "price": 3500,
+      "rating": 4.0,
+      "type": "Standard",
+      "amenities": ["Mountain View", "Restaurant", "WiFi"]
+    }
+  ],
+  "Tirupati": [
+    {
+      "name": "Leonia Holistic Destination",
+      "price": 4000,
+      "rating": 4.4,
+      "type": "Luxury",
+      "amenities": ["Pool", "Spa", "Temple Proximity", "WiFi"]
+    },
+    {
+      "name": "Hotel Bliss Tirupati",
+      "price": 2000,
+      "rating": 4.0,
+      "type": "Budget",
+      "amenities": ["Restaurant", "Parking", "WiFi"]
+    }
+  ],
+  "Andaman Islands": [
+    {
+      "name": "Barefoot at Havelock",
+      "price": 8000,
+      "rating": 4.7,
+      "type": "Luxury",
+      "amenities": ["Beach Access", "Diving", "Restaurant", "WiFi"]
+    },
+    {
+      "name": "Sea Shell Port Blair",
+      "price": 4500,
+      "rating": 4.2,
+      "type": "Standard",
+      "amenities": ["Sea View", "Pool", "Restaurant", "WiFi"]
+    }
+  ],
+  "Mysore": [
+    {
+      "name": "Radisson Blu Plaza Hotel Mysore",
+      "price": 5000,
+      "rating": 4.5,
+      "type": "Luxury",
+      "amenities": ["Pool", "Spa", "Palace View", "WiFi"]
+    },
+    {
+      "name": "Hotel Roopa Mysore",
+      "price": 1800,
+      "rating": 3.9,
+      "type": "Budget",
+      "amenities": ["Restaurant", "Parking", "WiFi"]
+    }
+  ],
+  "Coorg": [
+    {
+      "name": "Orange County Resort Coorg",
+      "price": 9000,
+      "rating": 4.8,
+      "type": "Luxury",
+      "amenities": ["Coffee Plantation", "Pool", "Spa", "WiFi"]
+    },
+    {
+      "name": "Coorg Cliffs Resort",
+      "price": 3500,
+      "rating": 4.2,
+      "type": "Standard",
+      "amenities": ["Valley View", "Restaurant", "WiFi"]
+    }
+  ],
+  "Jaipur": [
+    {
+      "name": "Rambagh Palace",
+      "price": 15000,
+      "rating": 4.9,
+      "type": "Luxury",
+      "amenities": ["Heritage Palace", "Pool", "Spa", "WiFi"]
+    },
+    {
+      "name": "Hotel Arya Niwas",
+      "price": 2500,
+      "rating": 4.0,
+      "type": "Budget",
+      "amenities": ["Garden", "Restaurant", "WiFi", "Parking"]
+    }
+  ],
+  "Varanasi": [
+    {
+      "name": "Brijrama Palace",
+      "price": 8000,
+      "rating": 4.6,
+      "type": "Luxury",
+      "amenities": ["Ganga View", "Heritage", "Restaurant", "WiFi"]
+    },
+    {
+      "name": "Hotel Ganges View",
+      "price": 2500,
+      "rating": 4.0,
+      "type": "Standard",
+      "amenities": ["Ganga View", "Rooftop", "WiFi"]
+    }
+  ],
+  "Gokarna": [
+    {
+      "name": "SwaSwara Resort",
+      "price": 7000,
+      "rating": 4.6,
+      "type": "Luxury",
+      "amenities": ["Beach Access", "Yoga", "Spa", "WiFi"]
+    },
+    {
+      "name": "Hotel Shastri",
+      "price": 1500,
+      "rating": 3.7,
+      "type": "Budget",
+      "amenities": ["Beach Proximity", "Restaurant", "Parking"]
+    }
+  ],
+  "Darjeeling": [
+    {
+      "name": "Mayfair Darjeeling",
+      "price": 6000,
+      "rating": 4.5,
+      "type": "Luxury",
+      "amenities": ["Mountain View", "Heritage", "Spa", "WiFi"]
+    },
+    {
+      "name": "Hotel Sinclairs Darjeeling",
+      "price": 3000,
+      "rating": 4.1,
+      "type": "Standard",
+      "amenities": ["Himalayan View", "Restaurant", "WiFi"]
+    }
+  ],
+  "Hampi": [
+    {
+      "name": "Evolve Back Hampi",
+      "price": 12000,
+      "rating": 4.8,
+      "type": "Luxury",
+      "amenities": ["Heritage View", "Pool", "Spa", "WiFi"]
+    },
+    {
+      "name": "Hampi's Boulders",
+      "price": 4000,
+      "rating": 4.3,
+      "type": "Standard",
+      "amenities": ["River View", "Bouldering", "Restaurant", "WiFi"]
+    }
+  ],
+  "Kedarnath": [
+    {
+      "name": "GMVN Kedarnath",
+      "price": 3000,
+      "rating": 4.0,
+      "type": "Standard",
+      "amenities": ["Temple Proximity", "Mountain View", "Restaurant"]
+    },
+    {
+      "name": "Hotel Shiv Lok",
+      "price": 1500,
+      "rating": 3.6,
+      "type": "Budget",
+      "amenities": ["Temple Proximity", "Basic Meals", "Parking"]
+    }
+  ],
+  "Alleppey": [
+    {
+      "name": "Marari Beach Resort",
+      "price": 8000,
+      "rating": 4.7,
+      "type": "Luxury",
+      "amenities": ["Backwaters", "Pool", "Ayurveda", "WiFi"]
+    },
+    {
+      "name": "Finishing Touch Houseboat",
+      "price": 4000,
+      "rating": 4.3,
+      "type": "Standard",
+      "amenities": ["Houseboat Stay", "Backwater View", "Meals Included"]
+    }
+  ],
+  "Mahabalipuram": [
+    {
+      "name": "Radisson Blu Resort Temple Bay",
+      "price": 7000,
+      "rating": 4.6,
+      "type": "Luxury",
+      "amenities": ["Beach Access", "Pool", "Temple View", "WiFi"]
+    },
+    {
+      "name": "Hotel Mamalla Heritage",
+      "price": 2000,
+      "rating": 3.9,
+      "type": "Budget",
+      "amenities": ["Beach Proximity", "Restaurant", "WiFi"]
+    }
+  ],
+  "Shimla": [
+    {
+      "name": "Wildflower Hall Shimla",
+      "price": 10000,
+      "rating": 4.8,
+      "type": "Luxury",
+      "amenities": ["Mountain View", "Pool", "Spa", "WiFi"]
+    },
+    {
+      "name": "Hotel Combermere Shimla",
+      "price": 3000,
+      "rating": 4.1,
+      "type": "Standard",
+      "amenities": ["Mall Road View", "Restaurant", "WiFi"]
+    }
+  ],
+  "Rameswaram": [
+    {
+      "name": "Hotel Daiwik Rameswaram",
+      "price": 3500,
+      "rating": 4.3,
+      "type": "Luxury",
+      "amenities": ["Temple Proximity", "Pool", "Restaurant", "WiFi"]
+    },
+    {
+      "name": "Hotel Tamil Nadu Rameswaram",
+      "price": 1200,
+      "rating": 3.7,
+      "type": "Budget",
+      "amenities": ["Sea View", "Restaurant", "Parking"]
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+flask
+pymongo
+flask-bcrypt
+google-generativeai
+requests
+dnspython

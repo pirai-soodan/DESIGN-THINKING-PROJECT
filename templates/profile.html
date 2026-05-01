@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Profile — SmartTrip</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: #03060f; color: #fff; min-height: 100vh;
+    }
+
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.1rem 5vw;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      background: rgba(3,6,15,0.9); backdrop-filter: blur(20px);
+      position: sticky; top: 0; z-index: 10;
+    }
+    .logo {
+      font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 800;
+      text-decoration: none; color: white;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .logo-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: linear-gradient(135deg, #2563ff, #8b5cf6);
+      box-shadow: 0 0 10px rgba(37,99,255,0.8);
+    }
+    .nav-links { display: flex; align-items: center; gap: 1rem; }
+    .nav-link {
+      font-size: 0.85rem; color: rgba(255,255,255,0.5);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-link:hover { color: white; }
+    .logout-btn {
+      font-size: 0.82rem; font-weight: 600; color: #fda4af;
+      background: rgba(244,63,94,0.08);
+      border: 1px solid rgba(244,63,94,0.2);
+      padding: 6px 14px; border-radius: 50px;
+      text-decoration: none; transition: background 0.2s;
+    }
+    .logout-btn:hover { background: rgba(244,63,94,0.15); }
+
+    main {
+      max-width: 760px; margin: 0 auto;
+      padding: 3.5rem 5vw 6rem;
+    }
+
+    .profile-header {
+      display: flex; align-items: center; gap: 1.5rem;
+      margin-bottom: 2.5rem; flex-wrap: wrap;
+    }
+    .avatar {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: linear-gradient(135deg, #2563ff, #8b5cf6);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Syne', sans-serif;
+      font-size: 1.8rem; font-weight: 800;
+      flex-shrink: 0;
+      box-shadow: 0 0 30px rgba(37,99,255,0.45);
+    }
+    .profile-info h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.7rem; font-weight: 800; letter-spacing: -0.5px;
+    }
+    .profile-info p {
+      color: rgba(255,255,255,0.4); font-size: 0.9rem; margin-top: 0.25rem;
+    }
+    .verified-badge {
+      display: inline-block; margin-top: 0.5rem;
+      font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase;
+      color: #86efac;
+      background: rgba(34,197,94,0.08);
+      border: 1px solid rgba(34,197,94,0.2);
+      padding: 3px 10px; border-radius: 50px;
+    }
+
+    .section-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px; padding: 1.8rem;
+      margin-bottom: 1.5rem;
+      position: relative; overflow: hidden;
+    }
+    .section-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent,
+        rgba(255,255,255,0.1), transparent);
+    }
+    .section-label {
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      display: flex; align-items: center; gap: 8px;
+      margin-bottom: 1.3rem;
+    }
+    .section-label::after {
+      content: ''; flex: 1; height: 1px;
+      background: rgba(255,255,255,0.07);
+    }
+
+    .info-row {
+      display: flex; justify-content: space-between;
+      align-items: center; padding: 0.65rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .info-row:last-child { border-bottom: none; }
+    .i-label { font-size: 0.83rem; color: rgba(255,255,255,0.4); }
+    .i-value { font-size: 0.88rem; font-weight: 600;
+               color: rgba(255,255,255,0.85); }
+
+    .no-trip {
+      text-align: center; padding: 2rem 1rem;
+      color: rgba(255,255,255,0.3);
+    }
+    .no-trip p { margin-bottom: 1.2rem; font-size: 0.9rem; }
+    .plan-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: linear-gradient(135deg, #2563ff, #8b5cf6);
+      color: white; text-decoration: none;
+      padding: 0.75rem 1.6rem; border-radius: 50px;
+      font-size: 0.9rem; font-weight: 600;
+      box-shadow: 0 0 20px rgba(37,99,255,0.3);
+      transition: transform 0.2s;
+    }
+    .plan-btn:hover { transform: translateY(-2px); }
+
+    .booking-id {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem; font-weight: 800;
+      color: #86efac; letter-spacing: 2px;
+    }
+    .grand-total {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem; font-weight: 800; color: #86efac;
+    }
+
+    .action-row {
+      display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;
+    }
+    .btn-primary {
+      flex: 1; padding: 0.85rem;
+      background: linear-gradient(135deg, #2563ff, #8b5cf6);
+      border: none; border-radius: 12px; color: white;
+      font-family: 'Outfit', sans-serif; font-size: 0.9rem; font-weight: 600;
+      text-decoration: none; text-align: center;
+      box-shadow: 0 0 18px rgba(37,99,255,0.3);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-primary:hover { transform: translateY(-2px); }
+    .btn-ghost {
+      flex: 1; padding: 0.85rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.04);
+      border-radius: 12px; color: rgba(255,255,255,0.65);
+      font-family: 'Outfit', sans-serif; font-size: 0.9rem; font-weight: 500;
+      text-decoration: none; text-align: center;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,0.08); transform: translateY(-2px); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo"><span class="logo-dot"></span>SmartTrip</a>
+  <div class="nav-links">
+    <a href="/" class="nav-link">Home</a>
+    <a href="/input" class="nav-link">Plan Trip</a>
+    <a href="/logout" class="logout-btn">Sign Out</a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- Profile Header -->
+  <div class="profile-header">
+    <div class="avatar">{{ user.initials }}</div>
+    <div class="profile-info">
+      <h1>{{ user.username }}</h1>
+      <p>{{ user.email }}</p>
+      <span class="verified-badge">✓ Signed In</span>
+    </div>
+  </div>
+
+  <!-- Account Details -->
+  <div class="section-card">
+    <div class="section-label">👤 Account Details</div>
+    <div class="info-row">
+      <span class="i-label">Username</span>
+      <span class="i-value">{{ user.username }}</span>
+    </div>
+    <div class="info-row">
+      <span class="i-label">Email</span>
+      <span class="i-value">{{ user.email }}</span>
+    </div>
+  </div>
+
+  <!-- Trip Details -->
+  {% if destination %}
+  <div class="section-card">
+    <div class="section-label">🗺️ Trip Details</div>
+    <div class="info-row">
+      <span class="i-label">Destination</span>
+      <span class="i-value">{{ destination }}</span>
+    </div>
+    {% if trip %}
+    <div class="info-row">
+      <span class="i-label">Travel Date</span>
+      <span class="i-value">{{ trip.travel_date }}</span>
+    </div>
+    <div class="info-row">
+      <span class="i-label">Duration</span>
+      <span class="i-value">{{ trip.days }} night(s)</span>
+    </div>
+    <div class="info-row">
+      <span class="i-label">Travelers</span>
+      <span class="i-value">{{ trip.members }} person(s)</span>
+    </div>
+    <div class="info-row">
+      <span class="i-label">Group</span>
+      <span class="i-value">{{ trip.group }}</span>
+    </div>
+    <div class="info-row">
+      <span class="i-label">Trip Type</span>
+      <span class="i-value">{{ trip.trip_type }}</span>
+    </div>
+    <div class="info-row">
+      <span class="i-label">Budget</span>
+      <span class="i-value">₹{{ trip.budget }}</span>
+    </div>
+    {% endif %}
+  </div>
+
+  <!-- Transport -->
+  {% if transport and transport.mode %}
+  <div class="section-card">
+    <div class="section-label">
+      {% if transport.mode == 'Flight' %}✈️
+      {% elif transport.mode == 'Train' %}🚆
+      {% else %}🚌{% endif %}
+      Transport
+    </div>
+    <div class="info-row">
+      <span class="i-label">Mode</span>
+      <span class="i-value">{{ transport.mode }}</span>
+    </div>
+    <div class="info-row">
+      <span class="i-label">Duration</span>
+      <span class="i-value">{{ transport.duration }}</span>
+    </div>
+    <div class="info-row">
+      <span class="i-label">Per Person</span>
+      <span class="i-value">₹{{ transport.price_per_person }}</span>
+    </div>
+    <div class="info-row">
+      <span class="i-label">Total</span>
+      <span class="i-value">₹{{ transport.total_price }}</span>
+    </div>
+  </div>
+  {% endif %}
+
+  <!-- Hotel & Booking -->
+  {% if booking and booking.hotel_name %}
+  <div class="section-card">
+    <div class="section-label">🏨 Hotel & Booking</div>
+    <div class="info-row">
+      <span class="i-label">Booking ID</span>
+      <span class="i-value booking-id">{{ booking.booking_id }}</span>
+    </div>
+    <div class="info-row">
+      <span class="i-label">Hotel</span>
+      <span class="i-value">{{ booking.hotel_name }}</span>
+    </div>
+    <div class="info-row">
+      <span class="i-label">Type</span>
+      <span class="i-value">{{ booking.hotel_type }}</span>
+    </div>
+    <div class="info-row">
+      <span class="i-label">Rating</span>
+      <span class="i-value">⭐ {{ booking.hotel_rating }}</span>
+    </div>
+    <div class="info-row">
+      <span class="i-label">Hotel Total</span>
+      <span class="i-value">₹{{ booking.hotel_total }}</span>
+    </div>
+    <div class="info-row">
+      <span class="i-label">Grand Total</span>
+      <span class="i-value grand-total">₹{{ booking.grand_total }}</span>
+    </div>
+  </div>
+
+  <div class="action-row">
+    <a href="/itinerary"    class="btn-primary">📋 View Itinerary</a>
+    <a href="/confirmation" class="btn-ghost">📄 Booking Summary</a>
+    <a href="/input"        class="btn-ghost">✈ New Trip</a>
+  </div>
+<!-- Trip History from MongoDB -->
+{% if trips %}
+<div class="section-card">
+  <div class="section-label">🗓️ Trip History</div>
+  {% for t in trips %}
+  <div class="info-row" style="flex-wrap:wrap;gap:0.5rem;align-items:flex-start;padding:0.8rem 0">
+    <div>
+      <div style="font-weight:600;font-size:0.9rem">{{ t.destination }}</div>
+      <div style="font-size:0.78rem;color:rgba(255,255,255,0.4);margin-top:2px">
+        {{ t.travel_date }} · {{ t.days }} nights · {{ t.members }} pax
+      </div>
+      <div style="font-size:0.75rem;color:rgba(255,255,255,0.3);margin-top:2px">
+        {{ t.transport }} · {{ t.hotel }}
+      </div>
+    </div>
+    <div style="text-align:right;flex-shrink:0">
+      <div style="font-family:'Syne',sans-serif;font-weight:800;color:#86efac">
+        Rs. {{ t.total_cost }}
+      </div>
+      <div style="font-size:0.72rem;color:rgba(255,255,255,0.3);margin-top:2px">
+        {{ t.booked_at }}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+  {% else %}
+  <!-- No trip planned yet -->
+  <div class="section-card">
+    <div class="section-label">🗺️ Trip Status</div>
+    <div class="no-trip">
+      <p>You haven't planned a trip yet.</p>
+      <a href="/input" class="plan-btn">✈ Plan Your First Trip</a>
+    </div>
+  </div>
+  {% endif %}
+
+</main>
+
+</body>
+</html>

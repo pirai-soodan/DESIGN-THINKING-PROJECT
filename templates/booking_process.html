@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Booking — SmartTrip</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: #03060f; color: #fff;
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      padding: 2rem;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 50% 40%,
+        rgba(37,99,255,0.1), transparent);
+      pointer-events: none;
+    }
+    .wrap { width: 100%; max-width: 540px; position: relative; z-index: 1; }
+
+    .ai-icon {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: linear-gradient(135deg,#2563ff,#8b5cf6);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.2rem; margin: 0 auto 1.5rem;
+      box-shadow: 0 0 40px rgba(37,99,255,0.5);
+      animation: pulse 1.5s ease infinite;
+    }
+    @keyframes pulse {
+      0%,100%{ box-shadow:0 0 40px rgba(37,99,255,0.4); transform:scale(1); }
+      50%    { box-shadow:0 0 70px rgba(37,99,255,0.8); transform:scale(1.05); }
+    }
+    h1 { font-family:'Syne',sans-serif; font-size:1.8rem; font-weight:800;
+          letter-spacing:-0.8px; text-align:center; margin-bottom:0.4rem; }
+    .subtitle { text-align:center; color:rgba(255,255,255,0.4);
+                 font-size:0.88rem; margin-bottom:2.5rem; }
+
+    .progress-wrap { background:rgba(255,255,255,0.07); border-radius:50px;
+                      height:6px; overflow:hidden; margin-bottom:2rem; }
+    .progress-fill { height:100%; border-radius:50px;
+                      background:linear-gradient(90deg,#2563ff,#8b5cf6);
+                      width:0%; transition:width 0.5s ease; }
+
+    .steps { display:flex; flex-direction:column; gap:0.75rem; margin-bottom:2.5rem; }
+    .step {
+      display:flex; align-items:center; gap:1rem;
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.07);
+      border-radius:14px; padding:1rem 1.2rem;
+      opacity:0.3;
+      transition:opacity 0.4s, border-color 0.4s, background 0.4s;
+    }
+    .step.active { opacity:1; border-color:rgba(37,99,255,0.4);
+                    background:rgba(37,99,255,0.06); }
+    .step.done   { opacity:1; border-color:rgba(34,197,94,0.3);
+                    background:rgba(34,197,94,0.05); }
+    .step-icon {
+      width:38px; height:38px; border-radius:10px; flex-shrink:0;
+      display:flex; align-items:center; justify-content:center; font-size:1.1rem;
+      background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1);
+    }
+    .step.active .step-icon { background:rgba(37,99,255,0.15); border-color:rgba(37,99,255,0.3); }
+    .step.done   .step-icon { background:rgba(34,197,94,0.15); border-color:rgba(34,197,94,0.3); }
+    .step-text { flex:1; }
+    .step-title { font-size:0.9rem; font-weight:600; margin-bottom:2px; }
+    .step-sub   { font-size:0.75rem; color:rgba(255,255,255,0.4); }
+    .step-status { font-size:0.75rem; font-weight:700; }
+    .step.active .step-status { color:#93c5fd; }
+    .step.done   .step-status { color:#86efac; }
+
+    .spinner { width:18px; height:18px;
+                border:2px solid rgba(255,255,255,0.15);
+                border-top-color:#2563ff; border-radius:50%;
+                animation:spin 0.7s linear infinite; display:none; }
+    .step.active .spinner { display:block; }
+    .step.done   .spinner { display:none; }
+    @keyframes spin { to{ transform:rotate(360deg); } }
+
+    .result-preview {
+      display:none;
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:18px; padding:1.5rem; margin-bottom:1.5rem;
+    }
+    .result-preview.show { display:block; }
+    .rp-title { font-size:0.72rem; font-weight:700; letter-spacing:2px;
+                 text-transform:uppercase; color:rgba(255,255,255,0.35);
+                 margin-bottom:1rem; }
+    .rp-row { display:flex; justify-content:space-between;
+               padding:0.5rem 0; border-bottom:1px solid rgba(255,255,255,0.05);
+               font-size:0.85rem; }
+    .rp-row:last-child { border:none; }
+    .rp-label { color:rgba(255,255,255,0.45); }
+    .rp-value { font-weight:600; }
+    .rp-total { color:#86efac; font-family:'Syne',sans-serif;
+                 font-size:1.1rem; font-weight:800; }
+
+    .proceed-btn {
+      display:none; width:100%; padding:1rem;
+      background:linear-gradient(135deg,#22c55e,#16a34a);
+      border:none; border-radius:14px;
+      color:white; font-family:'Outfit',sans-serif;
+      font-size:1rem; font-weight:700; cursor:pointer;
+      box-shadow:0 0 28px rgba(34,197,94,0.4);
+      transition:transform 0.2s, box-shadow 0.2s;
+      text-decoration:none; text-align:center;
+    }
+    .proceed-btn.show { display:block; }
+    .proceed-btn:hover { transform:translateY(-2px);
+                          box-shadow:0 0 45px rgba(34,197,94,0.6); }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="ai-icon">🤖</div>
+  <h1>AI Booking Your Trip</h1>
+  <p class="subtitle">
+    Agents are automatically securing the best options for
+    <strong>{{ destination }}</strong>
+  </p>
+
+  <div class="progress-wrap">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+
+  <div class="steps">
+    <div class="step" id="step1">
+      <div class="step-icon">🧭</div>
+      <div class="step-text">
+        <div class="step-title">Destination Agent analyzing preferences</div>
+        <div class="step-sub">Budget, group type, travel dates</div>
+      </div>
+      <div class="spinner"></div>
+      <div class="step-status" id="s1s"></div>
+    </div>
+    <div class="step" id="step2">
+      <div class="step-icon">🚌</div>
+      <div class="step-text">
+        <div class="step-title">Transport Agent selecting best mode</div>
+        <div class="step-sub" id="s2sub">Comparing Bus, Train, Flight</div>
+      </div>
+      <div class="spinner"></div>
+      <div class="step-status" id="s2s"></div>
+    </div>
+    <div class="step" id="step3">
+      <div class="step-icon">🏨</div>
+      <div class="step-text">
+        <div class="step-title">Hotel Agent selecting best stay</div>
+        <div class="step-sub" id="s3sub">Matching budget and rating</div>
+      </div>
+      <div class="spinner"></div>
+      <div class="step-status" id="s3s"></div>
+    </div>
+    <div class="step" id="step4">
+      <div class="step-icon">🎫</div>
+      <div class="step-text">
+        <div class="step-title">Booking Agent generating tickets</div>
+        <div class="step-sub">PNR, seat, booking IDs</div>
+      </div>
+      <div class="spinner"></div>
+      <div class="step-status" id="s4s"></div>
+    </div>
+    <div class="step" id="step5">
+      <div class="step-icon">✅</div>
+      <div class="step-text">
+        <div class="step-title">All bookings confirmed</div>
+        <div class="step-sub">Ready for payment</div>
+      </div>
+      <div class="spinner"></div>
+      <div class="step-status" id="s5s"></div>
+    </div>
+  </div>
+
+  <!-- Result preview (shown after done) -->
+<div class="result-preview" id="preview">
+  <div class="rp-title">AI Booking Summary</div>
+  <div class="rp-row">
+    <span class="rp-label">Destination</span>
+    <span class="rp-value">{{ destination }}</span>
+  </div>
+  <div class="rp-row">
+    <span class="rp-label">Transport</span>
+    <span class="rp-value">
+      {% if ticket.type == 'train' %}🚆{% else %}✈️{% endif %}
+      {{ ticket.type | capitalize }}
+      —
+      {% if ticket.type == 'train' %}{{ ticket.train_name }}{% else %}{{ ticket.airline }}{% endif %}
+    </span>
+  </div>
+  <div class="rp-row">
+    <span class="rp-label">Class</span>
+    <span class="rp-value">{{ ticket.class }}</span>
+  </div>
+  <div class="rp-row">
+    <span class="rp-label">PNR / Ref</span>
+    <span class="rp-value" style="font-family:monospace;color:#93c5fd">
+      {{ booking.pnr }}
+    </span>
+  </div>
+  <div class="rp-row">
+    <span class="rp-label">Seat</span>
+    <span class="rp-value">{{ booking.seat }}</span>
+  </div>
+  <div class="rp-row">
+    <span class="rp-label">Hotel</span>
+    <span class="rp-value">{{ hotel.name }}</span>
+  </div>
+  <div class="rp-row">
+    <span class="rp-label">Room</span>
+    <span class="rp-value">{{ hotel.room_type }}</span>
+  </div>
+  <div class="rp-row">
+    <span class="rp-label">Total Amount</span>
+    <span class="rp-value rp-total">Rs. {{ grand_total }}</span>
+  </div>
+</div>
+
+<a href="/payment" class="proceed-btn" id="proceedBtn">
+  Proceed to Payment — Rs. {{ grand_total }}
+</a>
+
+  <a href="/payment" class="proceed-btn" id="proceedBtn">
+    Proceed to Payment — Rs. {{ grand_total }}
+  </a>
+
+</div>
+<script>
+const transportMode = "{{ ticket.type | capitalize }} - {% if ticket.type == 'train' %}{{ ticket.train_name }}{% else %}{{ ticket.airline }}{% endif %}";
+const hotelName     = "{{ hotel.name }}";
+
+  const delay = ms => new Promise(r => setTimeout(r, ms));
+
+  function activate(id) {
+    document.getElementById(id).classList.add('active');
+  }
+  function complete(id, statusId, text) {
+    const el = document.getElementById(id);
+    el.classList.remove('active');
+    el.classList.add('done');
+    document.getElementById(statusId).textContent = text;
+  }
+  function setProgress(pct) {
+    document.getElementById('progressFill').style.width = pct + '%';
+  }
+
+  async function run() {
+    activate('step1'); setProgress(10);
+    await delay(1200);
+    complete('step1','s1s','✓ Done');
+
+    activate('step2'); setProgress(30);
+    document.getElementById('s2sub').textContent = 'AI selected: ' + transportMode;
+    await delay(1500);
+    complete('step2','s2s','✓ ' + transportMode + ' booked');
+
+    activate('step3'); setProgress(55);
+    document.getElementById('s3sub').textContent = 'Selected: ' + hotelName;
+    await delay(1400);
+    complete('step3','s3s','✓ Hotel secured');
+
+    activate('step4'); setProgress(80);
+    await delay(1200);
+    complete('step4','s4s','✓ Tickets generated');
+
+    activate('step5'); setProgress(100);
+    await delay(800);
+    complete('step5','s5s','✓ Confirmed');
+
+    await delay(400);
+    document.getElementById('preview').classList.add('show');
+    await delay(300);
+    document.getElementById('proceedBtn').classList.add('show');
+  }
+
+  run();
+</script>
+</body>
+</html>

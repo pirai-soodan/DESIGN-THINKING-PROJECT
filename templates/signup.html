@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign Up — SmartTrip</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Outfit', sans-serif; background: #03060f; color: #fff;
+      min-height: 100vh; display: flex; flex-direction: column;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 30% 40%,
+        rgba(37,99,255,0.1), transparent),
+        radial-gradient(ellipse 50% 50% at 70% 70%,
+        rgba(139,92,246,0.08), transparent);
+      pointer-events: none;
+    }
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.1rem 5vw; border-bottom: 1px solid rgba(255,255,255,0.06);
+      background: rgba(3,6,15,0.8); backdrop-filter: blur(20px);
+    }
+    .logo { font-family:'Syne',sans-serif; font-size:1.2rem; font-weight:800;
+             text-decoration:none; color:white; display:flex; align-items:center; gap:8px; }
+    .logo-dot { width:8px; height:8px; border-radius:50%;
+                background:linear-gradient(135deg,#2563ff,#8b5cf6);
+                box-shadow:0 0 10px rgba(37,99,255,0.8); }
+    main { flex:1; display:flex; align-items:center; justify-content:center; padding:3rem 1.5rem; }
+    .wrap { width:100%; max-width:440px; }
+    .header { text-align:center; margin-bottom:2rem; }
+    .icon { width:64px; height:64px; border-radius:18px;
+             background:linear-gradient(135deg,#2563ff,#8b5cf6);
+             display:flex; align-items:center; justify-content:center;
+             font-size:1.8rem; margin:0 auto 1.1rem;
+             box-shadow:0 0 30px rgba(37,99,255,0.4); }
+    .header h1 { font-family:'Syne',sans-serif; font-size:2rem; font-weight:800;
+                  letter-spacing:-0.8px; margin-bottom:0.4rem; }
+    .header p { color:rgba(255,255,255,0.4); font-size:0.9rem; }
+    .card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08);
+             border-radius:24px; padding:2.2rem; position:relative; overflow:hidden; }
+    .card::before { content:''; position:absolute; top:0; left:0; right:0; height:1px;
+                     background:linear-gradient(90deg,transparent,rgba(255,255,255,0.12),transparent); }
+    .msg-box { border-radius:10px; padding:0.75rem 1rem; font-size:0.85rem;
+                margin-bottom:1.2rem; display:flex; align-items:center; gap:8px; }
+    .msg-error   { background:rgba(244,63,94,0.08); border:1px solid rgba(244,63,94,0.25); color:#fda4af; }
+    .msg-success { background:rgba(34,197,94,0.08); border:1px solid rgba(34,197,94,0.25); color:#86efac; }
+    .field { display:flex; flex-direction:column; gap:0.45rem; margin-bottom:1rem; }
+    label { font-size:0.78rem; font-weight:600; color:rgba(255,255,255,0.5); }
+    input { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1);
+             border-radius:12px; padding:0.78rem 1rem; color:white;
+             font-family:'Outfit',sans-serif; font-size:0.95rem; outline:none;
+             transition:border-color 0.2s, box-shadow 0.2s; }
+    input::placeholder { color:rgba(255,255,255,0.2); }
+    input:focus { border-color:rgba(37,99,255,0.6); box-shadow:0 0 0 3px rgba(37,99,255,0.1); }
+    .divider { height:1px; margin:1rem 0;
+                background:linear-gradient(90deg,transparent,rgba(255,255,255,0.07),transparent); }
+    .submit-btn { width:100%; padding:0.9rem;
+                   background:linear-gradient(135deg,#2563ff,#8b5cf6);
+                   border:none; border-radius:12px; color:white;
+                   font-family:'Outfit',sans-serif; font-size:1rem; font-weight:600;
+                   cursor:pointer; box-shadow:0 0 24px rgba(37,99,255,0.35);
+                   transition:transform 0.2s, box-shadow 0.2s; margin-top:0.5rem; }
+    .submit-btn:hover { transform:translateY(-2px); box-shadow:0 0 40px rgba(37,99,255,0.55); }
+    .footer { text-align:center; margin-top:1.4rem; font-size:0.82rem; color:rgba(255,255,255,0.3); }
+    .footer a { color:#93c5fd; text-decoration:none; }
+    .footer a:hover { text-decoration:underline; }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="/" class="logo"><span class="logo-dot"></span>SmartTrip</a>
+  <a href="/login" style="font-size:0.85rem;color:rgba(255,255,255,0.5);text-decoration:none;">
+    Already have an account? Sign In
+  </a>
+</nav>
+<main>
+  <div class="wrap">
+    <div class="header">
+      <div class="icon">✈️</div>
+      <h1>Create Account</h1>
+      <p>Sign up to start planning your trips.</p>
+    </div>
+    <div class="card">
+      {% if error %}
+      <div class="msg-box msg-error">⚠️ {{ error }}</div>
+      {% endif %}
+      {% if success %}
+      <div class="msg-box msg-success">✓ {{ success }}
+        <a href="/login" style="color:#86efac;margin-left:8px;font-weight:700">Log In →</a>
+      </div>
+      {% endif %}
+      <form method="POST" action="/signup">
+        <div class="field">
+          <label>Username</label>
+          <input type="text" name="username" placeholder="e.g. Thanu" required/>
+        </div>
+        <div class="divider"></div>
+        <div class="field">
+          <label>Email Address</label>
+          <input type="email" name="email" placeholder="you@example.com" required/>
+        </div>
+        <div class="field">
+          <label>Password (min 6 characters)</label>
+          <input type="password" name="password" placeholder="Create a password" required/>
+        </div>
+        <div class="field">
+          <label>Confirm Password</label>
+          <input type="password" name="confirm_password" placeholder="Repeat password" required/>
+        </div>
+        <button type="submit" class="submit-btn">Create Account →</button>
+      </form>
+    </div>
+    <div class="footer">
+      Already have an account? <a href="/login">Sign In here</a>
+    </div>
+  </div>
+</main>
+</body>
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Choose Your Ticket — SmartTrip</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family:'Outfit',sans-serif; background:#03060f; color:#fff; min-height:100vh; }
+    nav { display:flex; align-items:center; justify-content:space-between;
+           padding:1.1rem 5vw; border-bottom:1px solid rgba(255,255,255,0.06);
+           background:rgba(3,6,15,0.9); backdrop-filter:blur(20px);
+           position:sticky; top:0; z-index:10; }
+    .logo { font-family:'Syne',sans-serif; font-size:1.2rem; font-weight:800;
+             text-decoration:none; color:white; display:flex; align-items:center; gap:8px; }
+    .logo-dot { width:8px; height:8px; border-radius:50%;
+                background:linear-gradient(135deg,#2563ff,#8b5cf6);
+                box-shadow:0 0 10px rgba(37,99,255,0.8); }
+    .nav-links { display:flex; align-items:center; gap:1rem; }
+    .nav-link { font-size:0.85rem; color:rgba(255,255,255,0.5);
+                 text-decoration:none; transition:color 0.2s; }
+    .nav-link:hover { color:white; }
+
+    .ai-bar { background:linear-gradient(135deg,rgba(37,99,255,0.12),rgba(139,92,246,0.08));
+               border-bottom:1px solid rgba(37,99,255,0.2);
+               padding:0.9rem 5vw; display:flex; align-items:center; gap:1rem; flex-wrap:wrap; }
+    .ai-bar-icon { width:32px; height:32px; border-radius:8px;
+                    background:linear-gradient(135deg,#2563ff,#8b5cf6);
+                    display:flex; align-items:center; justify-content:center;
+                    font-size:0.9rem; flex-shrink:0; }
+    .ai-bar-text { font-size:0.83rem; color:rgba(255,255,255,0.75); }
+    .ai-bar-text strong { color:#93c5fd; }
+
+    .page-header { text-align:center; padding:2.5rem 5vw 1.5rem; }
+    .page-badge { display:inline-flex; align-items:center; gap:6px;
+                   font-size:0.72rem; font-weight:700; letter-spacing:2px;
+                   text-transform:uppercase; color:#93c5fd;
+                   background:rgba(37,99,255,0.08); border:1px solid rgba(37,99,255,0.25);
+                   padding:5px 14px; border-radius:50px; margin-bottom:1rem; }
+    .page-header h1 { font-family:'Syne',sans-serif;
+                       font-size:clamp(1.8rem,4vw,2.8rem); font-weight:800;
+                       letter-spacing:-1px; margin-bottom:0.5rem; }
+    .page-header h1 span { background:linear-gradient(90deg,#60a5fa,#a78bfa);
+                            -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+                            background-clip:text; }
+    .route-bar { display:flex; justify-content:center; flex-wrap:wrap;
+                  gap:0.75rem; padding:0 5vw 1.5rem; }
+    .r-pill { display:flex; align-items:center; gap:7px;
+               background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1);
+               border-radius:50px; padding:7px 16px; font-size:0.83rem;
+               color:rgba(255,255,255,0.6); }
+    .r-pill strong { color:#fff; }
+
+    /* Tabs */
+    .tabs-wrap { padding:0 5vw; margin-bottom:1.5rem; }
+    .tabs { display:flex; gap:0.5rem; border-bottom:1px solid rgba(255,255,255,0.08); }
+    .tab-btn { padding:0.75rem 1.5rem; background:none; border:none;
+                color:rgba(255,255,255,0.4); font-family:'Outfit',sans-serif;
+                font-size:0.9rem; font-weight:600; cursor:pointer;
+                border-bottom:2px solid transparent; margin-bottom:-1px;
+                transition:color 0.2s, border-color 0.2s;
+                display:flex; align-items:center; gap:8px; }
+    .tab-btn.active { color:white; border-color:#2563ff; }
+    .count { font-size:0.68rem; font-weight:700; padding:2px 8px;
+              border-radius:50px; background:rgba(255,255,255,0.1); }
+    .tab-btn.active .count { background:rgba(37,99,255,0.3); color:#93c5fd; }
+
+    .tab-content { display:none; padding:0 5vw 4rem; }
+    .tab-content.active { display:block; }
+
+    /* AI advice box */
+    .ai-advice {
+      display:flex; align-items:flex-start; gap:10px;
+      background:rgba(37,99,255,0.06); border:1px solid rgba(37,99,255,0.2);
+      border-radius:14px; padding:1rem 1.2rem; margin-bottom:1.5rem;
+      font-size:0.83rem; color:rgba(255,255,255,0.65); line-height:1.6;
+    }
+
+    /* Ticket card */
+    .ticket-card { background:rgba(255,255,255,0.04);
+                    border:1px solid rgba(255,255,255,0.08);
+                    border-radius:18px; padding:1.5rem; margin-bottom:1rem;
+                    transition:transform 0.3s, border-color 0.3s, box-shadow 0.3s; }
+    .ticket-card:hover { transform:translateY(-3px);
+                          border-color:rgba(37,99,255,0.3);
+                          box-shadow:0 12px 40px rgba(0,0,0,0.4); }
+
+    .t-top { display:flex; align-items:center; justify-content:space-between;
+              flex-wrap:wrap; gap:1rem; margin-bottom:1.2rem; }
+    .t-operator { display:flex; align-items:center; gap:10px; }
+    .t-op-icon { width:42px; height:42px; border-radius:10px;
+                  display:flex; align-items:center; justify-content:center; font-size:1.2rem; }
+    .icon-train  { background:rgba(34,197,94,0.12); border:1px solid rgba(34,197,94,0.2); }
+    .icon-flight { background:rgba(139,92,246,0.12); border:1px solid rgba(139,92,246,0.2); }
+    .t-op-name { font-family:'Syne',sans-serif; font-size:1rem; font-weight:700; }
+    .t-op-num  { font-size:0.73rem; color:rgba(255,255,255,0.4); margin-top:2px; }
+    .t-price { text-align:right; }
+    .price-pp { font-family:'Syne',sans-serif; font-size:1.35rem; font-weight:800; color:#86efac; }
+    .price-total { font-size:0.75rem; color:rgba(255,255,255,0.4); margin-top:2px; }
+
+    .time-row { display:flex; align-items:center; gap:1rem; margin-bottom:1.2rem; }
+    .time-block { text-align:center; }
+    .time-val { font-family:'Syne',sans-serif; font-size:1.4rem; font-weight:800; }
+    .time-lbl { font-size:0.72rem; color:rgba(255,255,255,0.35); margin-top:2px; }
+    .time-mid { flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; }
+    .dur-val { font-size:0.75rem; color:rgba(255,255,255,0.45); }
+    .route-line { width:100%; height:1px; background:rgba(255,255,255,0.12); position:relative; }
+    .route-line::after { content:'►'; position:absolute; right:-8px; top:-7px;
+                          font-size:0.5rem; color:rgba(255,255,255,0.3); }
+
+    .chips { display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:1.2rem; }
+    .chip { font-size:0.72rem; color:rgba(255,255,255,0.5);
+             background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08);
+             padding:4px 10px; border-radius:50px; }
+    .chip.green { color:#86efac; background:rgba(34,197,94,0.08); border-color:rgba(34,197,94,0.2); }
+    .chip.amber { color:#fcd34d; background:rgba(245,158,11,0.08); border-color:rgba(245,158,11,0.2); }
+
+    .book-btn { width:100%; padding:0.8rem; border:none; border-radius:12px;
+                 color:white; font-family:'Outfit',sans-serif;
+                 font-size:0.9rem; font-weight:600; cursor:pointer;
+                 transition:transform 0.2s, filter 0.2s; }
+    .book-btn:hover { transform:translateY(-2px); filter:brightness(1.1); }
+    .btn-train  { background:linear-gradient(135deg,#16a34a,#15803d);
+                   box-shadow:0 0 16px rgba(22,163,74,0.3); }
+    .btn-flight { background:linear-gradient(135deg,#7c3aed,#6d28d9);
+                   box-shadow:0 0 16px rgba(124,58,237,0.3); }
+
+    .no-results { text-align:center; padding:3rem; color:rgba(255,255,255,0.3); font-size:0.9rem; }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="/" class="logo"><span class="logo-dot"></span>SmartTrip</a>
+  <div class="nav-links">
+    <a href="/input" class="nav-link">Change Details</a>
+    {% if session.get('user') %}
+    <a href="/profile" class="nav-link">{{ session['user']['username'] }}</a>
+    <a href="/logout" style="font-size:0.82rem;font-weight:600;color:#fda4af;
+       background:rgba(244,63,94,0.08);border:1px solid rgba(244,63,94,0.2);
+       padding:6px 14px;border-radius:50px;text-decoration:none;">Sign Out</a>
+    {% endif %}
+  </div>
+</nav>
+
+<!-- AI bar -->
+<div class="ai-bar">
+  <div class="ai-bar-icon">🤖</div>
+  <div class="ai-bar-text">
+    <strong>Booking Agent</strong> generated ticket options for
+    <strong>{{ trip.city }} → {{ destination }}</strong>
+    ({{ distance }} km) —
+    <strong>{{ trains|length }} trains</strong> and
+    <strong>{{ flights|length }} flights</strong> available
+  </div>
+</div>
+
+<div class="page-header">
+  <div class="page-badge">🎫 Choose Your Ticket</div>
+  <h1>{{ trip.city }} → <span>{{ destination }}</span></h1>
+  <p>Select a train or flight to continue booking.</p>
+</div>
+
+<div class="route-bar">
+  <div class="r-pill">📅 <strong>{{ trip.travel_date }}</strong></div>
+  <div class="r-pill">👥 <strong>{{ trip.members }} traveler(s)</strong></div>
+  <div class="r-pill">💰 Budget: <strong>Rs. {{ trip.budget }}</strong></div>
+  <div class="r-pill">📏 <strong>{{ distance }} km</strong></div>
+</div>
+
+<div class="tabs-wrap">
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('trains',this)">
+      🚆 Trains <span class="count">{{ trains|length }}</span>
+    </button>
+    <button class="tab-btn" onclick="switchTab('flights',this)">
+      ✈️ Flights <span class="count">{{ flights|length }}</span>
+    </button>
+  </div>
+</div>
+
+<!-- TRAINS -->
+<div class="tab-content active" id="tab-trains">
+  {% if train_ai %}
+  <div class="ai-advice">
+    <span>🤖</span><span><strong>AI Recommendation:</strong> {{ train_ai }}</span>
+  </div>
+  {% endif %}
+
+  {% if trains %}
+    {% for t in trains %}
+    <div class="ticket-card">
+      <div class="t-top">
+        <div class="t-operator">
+          <div class="t-op-icon icon-train">🚆</div>
+          <div>
+            <div class="t-op-name">{{ t.train_name }}</div>
+            <div class="t-op-num">{{ t.train_number }} · {{ t.class }}</div>
+          </div>
+        </div>
+        <div class="t-price">
+          <div class="price-pp">Rs. {{ t.price_per_person }}</div>
+          <div class="price-total">Rs. {{ t.total_price }} for {{ t.members }} pax</div>
+        </div>
+      </div>
+      <div class="time-row">
+        <div class="time-block">
+          <div class="time-val">{{ t.departure }}</div>
+          <div class="time-lbl">{{ t.origin }}</div>
+        </div>
+        <div class="time-mid">
+          <div class="dur-val">{{ t.duration }}</div>
+          <div class="route-line"></div>
+        </div>
+        <div class="time-block">
+          <div class="time-val">{{ t.arrival }}</div>
+          <div class="time-lbl">{{ t.destination }}</div>
+        </div>
+      </div>
+      <div class="chips">
+        <span class="chip">🪑 {{ t.class }}</span>
+        <span class="chip {{ 'amber' if t.availability < 20 else 'green' }}">
+          {{ t.availability }} seats available
+        </span>
+        <span class="chip">📏 {{ t.distance_km }} km</span>
+      </div>
+      <form action="/select-ticket" method="POST">
+        <input type="hidden" name="ticket_data" value='{{ t | tojson }}'/>
+        <button type="submit" class="book-btn btn-train">
+          Book {{ t.class }} →
+        </button>
+      </form>
+    </div>
+    {% endfor %}
+  {% else %}
+  <div class="no-results">🚆 No train options found for this route.</div>
+  {% endif %}
+</div>
+
+<!-- FLIGHTS -->
+<div class="tab-content" id="tab-flights">
+  {% if flight_ai %}
+  <div class="ai-advice">
+    <span>🤖</span><span><strong>AI Recommendation:</strong> {{ flight_ai }}</span>
+  </div>
+  {% endif %}
+
+  {% if flights %}
+    {% for f in flights %}
+    <div class="ticket-card">
+      <div class="t-top">
+        <div class="t-operator">
+          <div class="t-op-icon icon-flight">✈️</div>
+          <div>
+            <div class="t-op-name">{{ f.airline }}</div>
+            <div class="t-op-num">{{ f.flight_number }} · {{ f.class }}</div>
+          </div>
+        </div>
+        <div class="t-price">
+          <div class="price-pp">Rs. {{ f.price_per_person }}</div>
+          <div class="price-total">Rs. {{ f.total_price }} for {{ f.members }} pax</div>
+        </div>
+      </div>
+      <div class="time-row">
+        <div class="time-block">
+          <div class="time-val">{{ f.departure }}</div>
+          <div class="time-lbl">{{ f.origin }}</div>
+        </div>
+        <div class="time-mid">
+          <div class="dur-val">{{ f.duration }}</div>
+          <div class="route-line"></div>
+        </div>
+        <div class="time-block">
+          <div class="time-val">{{ f.arrival }}</div>
+          <div class="time-lbl">{{ f.destination }}</div>
+        </div>
+      </div>
+      <div class="chips">
+        <span class="chip">💺 {{ f.class }}</span>
+        <span class="chip {{ 'amber' if f.availability < 10 else 'green' }}">
+          {{ f.availability }} seats
+        </span>
+        <span class="chip">🧳 {{ f.baggage }}</span>
+        <span class="chip">🍽 {{ f.meal }}</span>
+      </div>
+      <form action="/select-ticket" method="POST">
+        <input type="hidden" name="ticket_data" value='{{ f | tojson }}'/>
+        <button type="submit" class="book-btn btn-flight">
+          Book {{ f.class }} →
+        </button>
+      </form>
+    </div>
+    {% endfor %}
+  {% else %}
+  <div class="no-results">
+    ✈️ Flights not available for this route (distance may be too short).
+  </div>
+  {% endif %}
+</div>
+
+<script>
+function switchTab(name, btn) {
+  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
